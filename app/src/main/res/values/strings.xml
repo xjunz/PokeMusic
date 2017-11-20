@@ -38,7 +38,8 @@
 	<string name="msg_about_os">
 		 Open source project refered to:
 		\nhttps://github.com/nickbutcher/plaid
-		 View source code:
+		 \nView source code:
+		\nhttps://github.com/zxj1999/PokeMusic
 	</string>
 	<string name="operation_failed">Operation falied!</string>
 </resources>

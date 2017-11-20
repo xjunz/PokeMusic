@@ -11,6 +11,19 @@ public class UiUtils
 
 	private static final Context context=App.app_context;
 
+	//风车戏法：通过在图片旋转过程中切换图片营造过渡效果
+	public static void windmillTrick(final ImageView v,final int imageRes,int rotation){
+		v.animate().rotation(rotation).setDuration(250)
+			.setInterpolator(App.linear_out_slow_in)
+			.start();
+		v.postDelayed(new Runnable(){
+				@Override
+				public void run()
+				{
+					v.setImageResource(imageRes);
+				}
+			}, 50);
+	}
 	
 	public static int dip2px(int dipValue)
 	{
@@ -61,7 +74,7 @@ public class UiUtils
 		TextView tv=(TextView) LayoutInflater.from(context).inflate(R.layout.layout_dialog_textview,null,false);
 		tv.setText(resMsg);
 	return	
-	    new AlertDialog.Builder(context)
+	    new AlertDialog.Builder(context,R.style.StyleDialog)
 		.setTitle(resTitle)
 		.setView(tv);
 	}

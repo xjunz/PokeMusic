@@ -123,10 +123,6 @@ MediaPlayer.OnErrorListener, MediaPlayer.OnBufferingUpdateListener, MediaPlayer.
 	public void onBufferingUpdate(MediaPlayer p1, int p2)
 	{
 		seekbar.setSecondaryProgress(seekbar.getMax() * p2);
-		if (p2 == 1)
-		{
-			enableUpdateProgress();
-		}
 	}
 
 	@Override
@@ -166,9 +162,17 @@ MediaPlayer.OnErrorListener, MediaPlayer.OnBufferingUpdateListener, MediaPlayer.
 		seekbar.setMax(p1.getDuration());
 		requestAudioFocus();
 		player.start();
-
+        enableUpdateProgress();
 	}
 
+	public void auto(){
+		if(player.isPlaying()){
+			player.pause();
+		}else{
+			player.start();
+		}
+	}
+	
 	@Override
 	public void onAudioFocusChange(int p1)
 	{

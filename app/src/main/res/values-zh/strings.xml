@@ -37,6 +37,9 @@
 	<string name="msg_about_os">
 		参考的开源项目：
 		\nhttps://github.com/nickbutcher/plaid
+		\n
+		\n查看源代码：
+		\nhttps://github.com/zxj1999/PokeMusic
 	</string>
 	<string name="operation_failed">操作失败！</string>
 </resources>

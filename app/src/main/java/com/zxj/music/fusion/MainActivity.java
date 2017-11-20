@@ -22,7 +22,6 @@ import com.zxj.music.fusion.task.*;
 import com.zxj.music.fusion.util.*;
 import com.zxj.music.fusion.widget.*;
 import java.util.*;
-
 import com.zxj.music.fusion.R;
 import android.system.*;
 
@@ -42,6 +41,7 @@ SnackBar.Callback,Panel.OnPanelSlideListener,MusicPlayer.OnProgressUpdateListene
 	private ResultFragment[]  fragmentList;
     private Panel panel;
 	private static MusicPlayer player;
+	private ImageButton ibBarPlay;
 	
 
     @Override
@@ -152,6 +152,7 @@ SnackBar.Callback,Panel.OnPanelSlideListener,MusicPlayer.OnProgressUpdateListene
 		tvDuration = (TextView) findViewById(R.id.tv_bar_duration);
 		sbPlayProgress = (SeekBar) findViewById(R.id.seekbar);
 		fabGotoTop = (ImageButton) findViewById(R.id.fab_goto_top);
+		ibBarPlay=(ImageButton) findViewById(R.id.ib_play);
 		tabs = new View[]{findViewById(R.id.tv_vendor_tencent),findViewById(R.id.tv_vendor_netease),findViewById(R.id.tv_vendor_kugou)};
 		indicator.post(new Runnable(){
 				@Override
@@ -195,6 +196,7 @@ SnackBar.Callback,Panel.OnPanelSlideListener,MusicPlayer.OnProgressUpdateListene
 		}
 	}
 
+	
 	protected void rotateFAB(boolean toBeUp){
 		if(toBeUp){
 			if(fabGotoTop.getRotation()==90){
@@ -296,7 +298,16 @@ SnackBar.Callback,Panel.OnPanelSlideListener,MusicPlayer.OnProgressUpdateListene
 	{
 		switch (view.getId())
 		{
-			case R.id.iv_search_music:
+			case R.id.ib_play:
+				
+				if(player!=null){
+			if(view.getRotation()==0){
+				UiUtils.windmillTrick((ImageView)view,R.drawable.ic_pause,360);
+				}else{
+				UiUtils.windmillTrick((ImageView)view,R.drawable.ic_play,0);
+				}
+				player.auto();
+			}
 				break;
 		}
 	}
@@ -540,10 +551,22 @@ SnackBar.Callback,Panel.OnPanelSlideListener,MusicPlayer.OnProgressUpdateListene
 	private SeekBar sbPlayProgress;
 
 	protected void playMusic(SongInfo info)
-	{
-		String url=info.getSourceUrl(SongInfo.QUALITY_S128);
+	{ 
+	    String quality=info.QUALITY_S128;
+		if(info.id_s128.equals("0")){
+			if(info.id_sogg.equals("0")){
+				quality=info.QUALITY_S320;
+			}else{
+				quality=info.QUALITY_SOGG;
+			}
+		}
+		App.copyToClipborad(info.getAudioSourceUrl(quality));
+		String url=info.getAudioSourceUrl(quality);
 		tvDuration.setText(info.formated_duration);
 		player.play(url);
+		panel.openPanel();
+		UiUtils.windmillTrick(ibBarPlay,R.drawable.ic_pause,360);
+		
         ((TextView)findViewById(R.id.player_artist)).setText(info.singer);
 		((TextView)findViewById(R.id.player_info)).setText(info.album);
 		((TextView)findViewById(R.id.player_title)).setText(info.songname);

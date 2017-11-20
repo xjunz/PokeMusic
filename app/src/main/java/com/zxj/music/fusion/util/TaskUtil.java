@@ -10,7 +10,8 @@ public class TaskUtil
 {
 	public  static final String task_base_url="https://www.tikitiki.cn";
 	public  static final String task_result_json_url=task_base_url + "/searchjson.do?keyword=%1$s&page=%2$s&type=%3$s";
-
+    public  static final String task_download_url=task_base_url+"/downloadurl.do?quality=%1$s&id=%2$s&type=%3$s";
+	public  static final String task_mv_url=task_base_url+"/getmvurl.do?quality=0&id=%1$s&type=%2$s";
 	public  static  int vendor=1;
 	
 	public  static String keyword="";

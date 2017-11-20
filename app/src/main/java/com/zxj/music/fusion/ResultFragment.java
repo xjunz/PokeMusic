@@ -1,27 +1,31 @@
 package com.zxj.music.fusion;
 
+import android.app.*;
 import android.content.*;
+import android.net.*;
 import android.os.*;
 import android.support.v4.app.*;
 import android.support.v7.widget.*;
+import android.text.*;
+import android.transition.*;
+import android.util.*;
 import android.view.*;
+import android.view.View.*;
 import android.widget.*;
 import com.zxj.music.fusion.bean.*;
-import java.util.*;
-import com.zxj.music.fusion.util.*;
-import android.graphics.*;
-import android.view.View.*;
 import com.zxj.music.fusion.task.*;
-import android.app.AlertDialog;
-import android.util.*;
-import android.transition.*;
-import android.text.*;
+import com.zxj.music.fusion.util.*;
+import java.util.*;
+
+import android.support.v4.app.Fragment;
 
 public class ResultFragment extends Fragment 
 {
 
     public ArrayList<SongInfo> songInfoList;
 	private static Transition transition=new ChangeBounds();
+	private SparseIntArray expandItemArray=new SparseIntArray();
+	
 	private  SimultaneousAnimator animator=new SimultaneousAnimator();
 	private static OnTouchListener touchEater=new OnTouchListener(){
 
@@ -55,8 +59,9 @@ public class ResultFragment extends Fragment
 		{
 			return;
 		}
+		expandItemArray.clear();
 		this.rvResult.getAdapter().notifyDataSetChanged();
-		
+
 	}
 
 
@@ -85,13 +90,13 @@ public class ResultFragment extends Fragment
 					rvResult.setOnTouchListener(null);
 					animator.setAnimateMoves(true);
 				}
-				
+
 			}).setDuration(200).setInterpolator(App.fast_out_slow_in);
-			
-		 rvResult.setItemAnimator(animator);
-		
+
+		rvResult.setItemAnimator(animator);
+
 		rvResult.setAdapter(new ResultAdapter());
-		
+
         rvResult.setOnScrollListener(new RecyclerView.OnScrollListener(){
 				@Override
 				public void onScrolled(RecyclerView recyclerView, int dx, int dy)
@@ -117,13 +122,15 @@ public class ResultFragment extends Fragment
 							new LoadMoreTask(songInfoList)
 								.setLoadMoreListener(main)
 								.execute();
-						}else if(!rvResult.canScrollVertically(-1)){
+						}
+						else if (!rvResult.canScrollVertically(-1))
+						{
 							main.rotateFAB(false);
 						}
 					}
 				}
 			});
-	
+
 		return layout;
 	}
 
@@ -141,32 +148,35 @@ public class ResultFragment extends Fragment
 		@Override
 		public void onBindViewHolder(ResultFragment.ResultAdapter.SongViewHolder viewHolder, int position, List<Object> payloads)
 		{
-			if(payloads.size()==0){
+			if (payloads.size() == 0)
+			{
 				super.onBindViewHolder(viewHolder, position, payloads);
-			}else{
+			}
+			else
+			{
 				boolean shouldExpand=expandItemArray.get(position, -1) != -1;
 				viewHolder.dloadContainer.setVisibility(shouldExpand ?0: 8);
 				viewHolder.itemView.setActivated(shouldExpand);
 			}
-			
+
 		}
 
-		
-		
+
+
         @Override
 		public void onBindViewHolder(ResultFragment.ResultAdapter.SongViewHolder viewHolder, int p2)
 		{
 			SongInfo info=songInfoList.get(p2);
 			viewHolder.tvTitle.setText(info.songname);
 			viewHolder.tvSinger.setText(info.singer);
-			viewHolder.tvInfo.setText(TextUtils.isEmpty(info.album)?main.getString(R.string.unknown):info.album);
+			viewHolder.tvInfo.setText(TextUtils.isEmpty(info.album) ?main.getString(R.string.unknown): info.album);
 			boolean shouldExpand=expandItemArray.get(p2, -1) != -1;
 			viewHolder.dloadContainer.setVisibility(shouldExpand ?0: 8);
 			viewHolder.itemView.setActivated(shouldExpand);
-			viewHolder.btnS128.setVisibility(info.id_s128.equals("0")?8:0);
-			viewHolder.btnS320.setVisibility(info.id_s320.equals("0")?8:0);
-			viewHolder.btnOgg.setVisibility(info.id_sogg.equals("0")?8:0);
-			viewHolder.btnMV.setVisibility(info.id_mv.equals("0")?8:0);
+			viewHolder.btnS128.setVisibility(info.id_s128.equals("0") ?8: 0);
+			viewHolder.btnS320.setVisibility(info.id_s320.equals("0") ?8: 0);
+			viewHolder.btnOgg.setVisibility(info.id_sogg.equals("0") ?8: 0);
+			viewHolder.btnMV.setVisibility(info.id_mv.equals("0") ?8: 0);
 		}
 
 		@Override
@@ -176,8 +186,7 @@ public class ResultFragment extends Fragment
 		}
 
 
-		private SparseIntArray expandItemArray=new SparseIntArray();
-
+		
 		class SongViewHolder extends RecyclerView.ViewHolder implements OnClickListener
 		{
 
@@ -240,13 +249,26 @@ public class ResultFragment extends Fragment
 						}
 						TransitionManager.beginDelayedTransition(rvResult, transition);
 						animator.setAnimateMoves(false);
-						notifyItemChanged(pos,0);
+						notifyItemChanged(pos, 0);
 						break;
 					case R.id.btn_dload_s320:
-						DownloadUtils.download(info.getSourceUrl(SongInfo.QUALITY_S320),DownloadUtils.PATH_NETEASE_MUSIC+info.songname
-						,info.songname+".mp3",info.songname,info.songname);
+						DownloadUtils.download(info.getAudioSourceUrl(SongInfo.QUALITY_S320), DownloadUtils.PATH_NETEASE_MUSIC + info.songname
+											   , info.songname + ".mp3", info.songname, info.songname+"-"+info.singer);
 						break;
-
+					case R.id.btn_dload_s128:
+						DownloadUtils.download(info.getAudioSourceUrl(SongInfo.QUALITY_S128), DownloadUtils.PATH_NETEASE_MUSIC + info.songname
+											   , info.songname + ".mp3", info.songname, info.songname+"-"+info.singer);
+						break;
+					case R.id.btn_dload_ogg:
+						DownloadUtils.download(info.getAudioSourceUrl(SongInfo.QUALITY_SOGG), DownloadUtils.PATH_NETEASE_MUSIC + info.songname
+											   , info.songname + ".ogg", info.songname, info.songname+"-"+info.singer);
+					
+					case R.id.btn_dload_mv:
+						Intent it = new Intent(Intent.ACTION_VIEW);
+						Uri uri = Uri.parse(info.getMVUrl());
+						it.setDataAndType(uri, "video/mp4");
+						main.startActivity(it);
+					
 				}
 			}
 		}
@@ -254,7 +276,7 @@ public class ResultFragment extends Fragment
 	}
 
 
-	 static class SimultaneousAnimator extends DefaultItemAnimator
+	static class SimultaneousAnimator extends DefaultItemAnimator
 	{
 
 		private boolean animateMoves = true;

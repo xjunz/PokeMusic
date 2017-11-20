@@ -23,6 +23,7 @@
 
 		<ImageButton
 			android:id="@+id/ib_play"
+			android:onClick="onClick"
 			android:layout_width="@dimen/d_mini_fab"
 			android:layout_height="@dimen/d_mini_fab"
 			android:scaleType="centerInside"

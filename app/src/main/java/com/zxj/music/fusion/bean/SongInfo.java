@@ -61,14 +61,15 @@ public class SongInfo
 		return null;
 	}
 
-	public String getSourceUrl(String quality)
+	public String getAudioSourceUrl(String quality)
 	{
-		String id=getId(quality);
-		if(TextUtils.isEmpty(id)){
-			return null;
-		}
-		return String.format("https://www.tikitiki.cn/downloadurl.do?quality=%1$s&id=%2$s&type=%3$s",
-							 quality, id, TaskUtil.vendor);
+		
+		return String.format(TaskUtil.task_download_url,
+							 quality,getId(quality), TaskUtil.vendor);
+	}
+	
+	public String getMVUrl(){
+		return String.format(TaskUtil.task_mv_url,id_mv,TaskUtil.vendor);
 	}
 }
 
