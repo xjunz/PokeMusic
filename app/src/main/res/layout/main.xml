@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zxj.music.fusion.widget.Panel
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:id="@+id/panel"
+	android:layout_height="match_parent">
+	<ImageView
+		android:onClick="onClick"
+		android:id="@+id/iv_search_music"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:src="@drawable/search_music"
+		android:layout_centerInParent="true"/>
+
+	<android.support.v4.view.ViewPager
+		android:layout_below="@+id/ll_tab_container"
+        android:id="@+id/viewpager"
+	    android:visibility="gone"
+		android:background="?android:attr/colorBackground"
+		android:layout_width="match_parent"
+        android:layout_height="match_parent"
+	/>
+
+	<include
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_below="@+id/ll_tab_container"
+		layout="@layout/layout_playing_bar"
+	/>
+	<ImageButton
+		android:id="@+id/ib_chevron"
+		android:layout_below="@id/ll_tab_container"
+		android:layout_gravity="center_horizontal|bottom"
+		android:background="?android:selectableItemBackgroundBorderless"
+		android:layout_centerHorizontal="true"
+		android:scaleType="centerInside"
+		android:alpha=".5"
+		android:src="@drawable/ic_chevron_down"
+		android:layout_width="28dp"
+		android:layout_height="28dp"
+		android:onClick="autoPanel"
+		android:tint="?android:colorAccent"
+	/>
+	<Toolbar
+		style="@style/StyleToolbar"
+		android:id="@+id/toolbar_main"
+		android:layout_alignParentTop="true"
+		android:minHeight="?android:attr/actionBarSize"
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent"/>
+
+	<LinearLayout
+		android:id="@id/ll_tab_container"
+		android:background="?android:attr/colorPrimary"
+		android:layout_below="@id/toolbar_main"
+		android:elevation="@dimen/z_toolbar"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
+
+		<TextView
+			android:enabled="false"
+			android:onClick="onTabClick"
+			android:id="@+id/tv_vendor_tencent"
+			android:tag="0"
+			android:letterSpacing="@dimen/letter_spacing_normal"
+			android:layout_weight="1"
+			android:gravity="center"
+			android:text="@string/vendor_tencent"
+			android:clickable="true"
+			android:paddingTop="@dimen/spacing_large"
+			android:paddingBottom="@dimen/spacing_large"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:background="?android:attr/selectableItemBackgroundBorderless"
+		/>
+
+		<TextView
+			android:letterSpacing="@dimen/letter_spacing_normal"
+			android:enabled="false"
+			android:onClick="onTabClick"
+			android:id="@+id/tv_vendor_netease"
+			android:tag="1"
+			android:layout_weight="1"
+			android:gravity="center"
+			android:text="@string/vendor_netease"
+			android:clickable="true"
+			android:paddingTop="@dimen/spacing_large"
+			android:paddingBottom="@dimen/spacing_large"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:background="?android:attr/selectableItemBackgroundBorderless"
+		/>
+		<TextView
+			android:letterSpacing="@dimen/letter_spacing_normal"
+			android:enabled="false"
+			android:onClick="onTabClick"
+			android:id="@+id/tv_vendor_kugou"
+			android:tag="2"
+			android:layout_weight="1"
+			android:gravity="center"
+			android:text="@string/vendor_kugou"
+			android:clickable="true"
+			android:paddingTop="@dimen/spacing_large"
+			android:paddingBottom="@dimen/spacing_large"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:background="?android:attr/selectableItemBackgroundBorderless"
+		/>
+	</LinearLayout>
+
+
+    <View
+		android:id="@+id/indicator"
+		android:layout_width="200px"
+		android:layout_height="2dp"
+		android:visibility="invisible"
+		android:elevation="@dimen/z_toolbar"
+		android:background="?android:colorAccent"
+		android:layout_alignBottom="@id/ll_tab_container"
+		android:layout_marginBottom="-2dp"
+		android:layout_centerHorizontal="true"
+	/>
+
+
+    <ProgressBar
+		android:alpha="0"
+		android:layout_alignParentBottom="true"
+		android:id="@+id/progressbar_bottom"
+		android:layout_marginBottom="-7dp"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		style="?android:attr/progressBarStyleHorizontal"
+		android:indeterminate="true"/>
+	
+	<ProgressBar
+		android:alpha="0"
+		android:layout_below="@id/ll_tab_container"
+		android:id="@+id/progressbar_top"
+		android:layout_marginTop="-7dp"
+		android:layout_marginBottom="-7dp"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		style="?android:attr/progressBarStyleHorizontal"
+		android:indeterminate="true"/>
+	
+	<ImageButton
+		android:onClick="scrollToTop"
+		android:id="@+id/fab_goto_top"
+		android:src="@drawable/ic_play"
+		android:background="@drawable/fab"
+		android:layout_width="@dimen/d_normal_fab"
+		android:layout_height="@dimen/d_normal_fab"
+		android:layout_alignParentBottom="true"
+		android:layout_alignParentEnd="true"
+		android:layout_marginRight="@dimen/spacing_xlarge"
+		android:layout_marginBottom="@dimen/spacing_large"
+		android:elevation="@dimen/z_toolbar"
+		android:scaleType="centerInside"
+		android:rotation="90"
+	/>
+
+
+</com.zxj.music.fusion.widget.Panel>
+

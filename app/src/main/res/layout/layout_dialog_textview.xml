@@ -1,0 +1,12 @@
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+	android:autoLink="web"
+	android:textStyle="italic"
+	android:typeface="monospace"
+	android:padding="@dimen/spacing_xlarge"
+	android:textSize="@dimen/tsize_normal"
+	android:letterSpacing="@dimen/letter_spacing_small"
+    >
+    
+</TextView>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">口袋音乐</string>
+	<string name="about">关于</string>
+	<string name="setting">设置</string>
+	<string name="exit">退出</string>
+	<string name="search">搜索</string>
+	<string name="search_hint">在曲库中搜索</string>
+	<string name="vendor_tencent">腾讯</string>
+	<string name="vendor_netease">网易</string>
+	<string name="vendor_kugou">酷狗</string>
+	<string name="unknown">未知</string>
+	<string name="noti_no_internet_detected">未检测到网络，请检查。</string>
+	<string name="retry">重试</string>
+	<string name="result_for">「%s」的搜索结果</string>
+	<string name="noti_keyword_not_change">关键词未改变。
+	</string>
+	<string name="still_try">仍然搜索</string>
+	<string name="noti_load_up">没有更多歌曲了 :(</string>
+	<string name="err_play">播放出错 :(</string>
+	<string name="noti_use_mobile_data">当前处于移动网络下，确定继续播放？</string>
+	<string name="s128">标准</string>
+	<string name="s320">高品质（HQ）</string>
+	<string name="noti_permission_granted">授权成功</string>
+	<string name="noti_permission_not_granted">授权失败</string>
+	<string name="msg_permission_not_granted">请授予本应用写入储存空间权限，否则应用无法正常工作。请放心，我们不会滥用权限。</string>
+	<string name="settings">设置</string>
+	<string name="err_permission">错误！授权失败。</string>
+	<string name="about_os">开源相关</string>
+	<string name="feedback">反馈</string>
+	<string name="donate">捐赠</string>
+	<string name="msg_about">
+		本应用允许你在不下载客户端的的情况下下载对应平台的音乐和音乐视频。
+	    \n搜索内容来自 
+		\nhttps://tikitiki.cn
+		</string>
+	<string name="msg_about_os">
+		参考的开源项目：
+		\nhttps://github.com/nickbutcher/plaid
+	</string>
+	<string name="operation_failed">操作失败！</string>
+</resources>

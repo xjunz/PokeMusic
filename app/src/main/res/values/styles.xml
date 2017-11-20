@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!--dimens-->
+
+	<!--textsize-->
+	<dimen name="tsize_small">13sp</dimen>
+	<dimen name="tsize_normal">16sp</dimen>
+	<dimen name="tsize_large">18sp</dimen>
+	<!--elevation-->
+	<dimen name="z_toolbar">4dp</dimen>
+	<dimen name="z_popup">6dp</dimen>
+	<!--spacing-->
+	<dimen name="spacing_normal">8dp</dimen>
+	<dimen name="minus_spacing_normal">-8dp</dimen>
+	<dimen name="spacing_large">16dp</dimen>
+	<dimen name="spacing_xlarge">32dp</dimen>
+	<dimen name="spacing_xxlarge">40dp</dimen>
+	<item name="letter_spacing_small" type="dimen">.08</item>
+	<item name="letter_spacing_normal" type="dimen">.2</item>
+	<item name="letter_spacing_large" type="dimen">.35</item>
+    <!--width & height-->
+	<dimen name="d_normal_fab">48dp</dimen>
+    <dimen name="d_small_fab">40dp</dimen>
+    <dimen name="d_mini_fab">32dp</dimen>
+	
+	<!--dimens-->
+	<color name="pink">#FF4981</color>
+	<color name="pink_quater">#40ff4081</color>
+
+
+	<!--styles-->
+	<style name="MainTheme" parent="@android:style/Theme.Material.Light.NoActionBar">
+		<item name="android:colorAccent">@color/pink</item> 
+		<item name="android:colorButtonNormal">@color/pink</item>
+		<item name="android:colorControlHighlight">@color/pink_quater</item>
+		<item name="android:colorEdgeEffect">?android:colorAccent</item>
+		<item name="android:actionOverflowMenuStyle">@style/StylePopup</item>
+	</style>
+
+	<style name="MainTheme.Translucent">
+		<item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+	</style>
+	
+	<style name="MainTheme.Translucent.Search">
+		<item name="android:windowEnterTransition">@transition/search_enter</item>
+        <item name="android:windowReturnTransition">@transition/search_return</item>
+        <item name="android:windowSharedElementEnterTransition">@transition/search_shared_enter</item>
+        <item name="android:windowSharedElementReturnTransition">@transition/search_shared_return</item>
+        <item name="android:windowSharedElementsUseOverlay">true</item>
+	</style>
+		
+		
+	
+	<style name="StyleToolbar" parent="@android:style/Widget.Toolbar">
+		<item name="android:elevation">@dimen/z_toolbar</item>
+		<item name="android:titleTextAppearance">@style/ToolbarTitleTextAppearance</item>
+		<item name="android:background">?android:attr/colorPrimary</item>
+	</style>
+
+	<style name="StylePopup" parent="@android:style/Widget.DeviceDefault.PopupMenu">
+		<item name="android:overlapAnchor">true</item>
+		<item name="android:dropDownVerticalOffset">@dimen/spacing_normal</item>
+		<item name="android:dropDownHorizontalOffset">@dimen/minus_spacing_normal</item>
+		<item name="android:popupElevation">@dimen/z_popup</item>
+	</style>
+
+	<style name="ToolbarTitleTextAppearance" parent="@android:style/Widget.TextView">
+		<item name="android:typeface">monospace</item>
+		<item name="android:letterSpacing">@dimen/letter_spacing_large</item>
+		<item name="android:textSize">@dimen/tsize_large</item>
+	</style>
+
+	<style name="StyleDialogFullscreen" parent="@android:style/Theme.Material.Light.DialogWhenLarge">
+        <item name="android:windowNoTitle">true</item>
+		<item name="android:colorAccent">@color/pink</item> 
+		<item name="android:colorButtonNormal">@color/pink</item>
+		<item name="android:colorControlHighlight">@color/pink_quater</item>
+        <item name="android:statusBarColor">?android:attr/colorPrimaryDark</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+    </style>
+
+	<!--style-->
+
+</resources>

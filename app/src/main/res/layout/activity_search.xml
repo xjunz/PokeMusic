@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/container"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+
+	<LinearLayout
+		android:id="@+id/search_background"
+		android:background="?android:attr/colorPrimary"
+		android:layout_alignParentTop="true"
+		android:gravity="center_vertical"
+		android:layout_width="match_parent"
+		android:layout_height="?android:actionBarSize"
+		android:outlineProvider="bounds"
+		android:transitionGroup="false">
+
+		<ImageButton
+			android:layout_marginLeft="@dimen/spacing_normal"
+			android:id="@+id/searchback"
+			android:onClick="onClick"
+			android:layout_width="@dimen/d_small_fab"
+			android:layout_height="@dimen/d_small_fab"
+			android:background="?android:selectableItemBackgroundBorderless"
+			android:src="@drawable/ic_arrow_back_padded"
+			android:transitionName="transition_search_back"/>
+		
+		<SearchView
+			android:id="@+id/search_view"
+			android:searchIcon="@android:color/transparent"
+			android:searchHintIcon="@android:color/transparent"
+			android:queryBackground="@android:color/transparent"
+			android:submitBackground="@android:color/transparent"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:iconifiedByDefault="false"
+			android:transitionGroup="true"/>	
+
+	</LinearLayout>
+   
+	
+
+</RelativeLayout>
+

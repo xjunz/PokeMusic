@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Poke Music</string>
+    <string name="about">About</string>
+	<string name="setting">Setting</string>
+	<string name="exit">Exit</string>
+	<string name="search">Search</string>
+    <string name="search_hint">Search Music Repo</string>
+	<string name="vendor_tencent">Tencent</string>
+	<string name="vendor_netease">Netease</string>
+	<string name="vendor_kugou">Kugou</string>
+	<string name="unknown">Unknown</string>
+	<string name="noti_no_internet_detected">No internet detected.Please check."</string>
+	<string name="retry">Retry</string>
+	<string name="result_for">Result For 「%s」</string>
+	<string name="noti_keyword_not_change">Keyword seems to be not changed.</string>
+	<string name="still_try">Still try</string>
+	<string name="noti_load_up">No more songs :(</string>
+	<string name="err_play">An Error occured when playing :(</string>
+	<string name="noti_use_mobile_data">Are you sure to play this song using MOBILE DATA ?</string>
+	<string name="s128">Standard</string>
+	<string name="s320">High Quality</string>
+	<string name="ogg">ogg</string>
+	<string name="mv">MV</string>
+	<string name="noti_permission_granted">Permission granted.</string>
+	<string name="noti_permission_not_granted">Permission not granted.</string>
+	<string name="msg_permission_not_granted">Please grant the WRITE-EXTERNAL-STORAGE permission,without which this app can\'t run.Be at ease,we won\'t abuse it.</string>
+	<string name="settings">Settings</string>
+	<string name="err_permission">Error!Permission not granted.</string>
+	<string name="about_os">Open Source Issues</string>
+	<string name="donate">Donate</string>
+	<string name="feedback">Feedback</string>
+	<string name="msg_about">
+		This app enables you to download a certain platform\'s music without downloading its client terminal."
+		\nAll contents are from
+		\nhttps://tikitiki.cn
+	</string>
+	<string name="msg_about_os">
+		 Open source project refered to:
+		\nhttps://github.com/nickbutcher/plaid
+		 View source code:
+	</string>
+	<string name="operation_failed">Operation falied!</string>
+</resources>

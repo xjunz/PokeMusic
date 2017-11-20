@@ -1,0 +1,47 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+	android:gravity="center|top"
+    android:orientation="vertical">
+	<LinearLayout
+		android:id="@+id/ll_toolbar"
+		android:layout_height="?android:actionBarSize"
+		android:layout_width="match_parent"
+		android:background="?android:colorPrimary"
+		android:gravity="center_vertical"
+		android:elevation="@dimen/z_toolbar"
+	>
+		<ImageButton
+			android:layout_marginLeft="@dimen/spacing_large"
+			android:tint="?android:colorAccent"
+			android:background="?android:selectableItemBackgroundBorderless"
+			android:src="@drawable/ic_arrow_back_padded"
+			android:layout_width="@dimen/d_mini_fab"
+			android:layout_height="@dimen/d_mini_fab"
+		/>
+		<TextView
+			android:text="关于"
+			android:textSize="@dimen/tsize_large"
+			android:alpha=".7"
+			android:textColor="?android:colorAccent"
+			android:layout_marginLeft="@dimen/spacing_large"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:letterSpacing="@dimen/letter_spacing_large"
+		/>
+	</LinearLayout>
+
+	
+	<ImageView
+		android:layout_below="@id/ll_toolbar"
+		android:layout_marginTop="@dimen/spacing_normal"
+		android:src="@drawable/icon_art"
+		android:layout_width="300px"
+		android:layout_height="300px"
+		android:elevation="@dimen/z_toolbar"
+	/>
+
+
+
+
+</RelativeLayout>

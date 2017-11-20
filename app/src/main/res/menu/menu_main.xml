@@ -1,0 +1,37 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+	>
+	
+    <item 
+		android:icon="@drawable/ic_search"
+		android:id="@+id/item_search"
+        android:title="@string/search"
+	    android:showAsAction="always"
+		/>
+	<item
+        android:id="@+id/item_feedback"
+        android:title="@string/feedback"
+		android:showAsAction="never"
+	/>
+    <item
+        android:id="@+id/item_about"
+        android:title="@string/about"
+		android:showAsAction="never"
+	/>
+	<item 
+		android:id="@+id/item_about_os"
+	    android:title="@string/about_os"
+		android:showAsAction="never"
+	/>
+	<item 
+		android:id="@+id/item_donate"
+	    android:title="@string/donate"
+		android:showAsAction="never"
+	/>
+	
+    <item 
+		android:id="@+id/item_exit"
+	    android:title="@string/exit"
+		android:showAsAction="never"
+	/>
+
+</menu>

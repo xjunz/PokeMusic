@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:layout_gravity="top"
+>
+<LinearLayout
+	android:layout_gravity="bottom"
+	android:visibility="invisible"
+	android:elevation="6dp"
+	android:layout_width="match_parent"
+	android:clickable="true"
+	android:background="#323232"
+	android:layout_height="wrap_content">
+
+	<TextView
+		android:textColor="#ffffff"
+		android:layout_weight="1"
+		android:id="@+id/layout_snack_bar_text"
+		android:letterSpacing="@dimen/letter_spacing_normal"
+		android:layout_marginLeft="@dimen/spacing_large"
+		android:layout_marginTop="@dimen/spacing_normal"
+		android:layout_marginRight="@dimen/spacing_normal"
+		android:layout_marginBottom="@dimen/spacing_normal"
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent"
+		android:layout_gravity="center_vertical|left|start"
+		android:ellipsize="end"
+	/>
+	<Button
+		
+		android:letterSpacing="@dimen/letter_spacing_normal"
+		android:id="@+id/layout_snack_bar_action"
+		android:layout_gravity="center_vertical|right|end"
+		android:minWidth="48dp"
+		android:layout_marginRight="@dimen/spacing_normal"
+		style="?android:attr/buttonBarButtonStyle"
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+	    android:visibility="invisible"
+	/>
+
+
+</LinearLayout>
+</FrameLayout>
+
+

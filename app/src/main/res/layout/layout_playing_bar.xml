@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical"
+	android:clickable="true"
+	android:gravity="center_horizontal"
+	android:id="@+id/playing_bar"
+	android:background="?android:attr/colorPrimary">
+	<View
+		android:background="?android:attr/dividerVertical"
+		android:layout_height="1px"
+		android:layout_marginRight="@dimen/spacing_large"
+		android:layout_marginLeft="@dimen/spacing_large"
+		android:layout_width="match_parent"/>
+
+	<RelativeLayout
+		android:id="@+id/rl_container"
+		android:layout_marginTop="@dimen/spacing_normal"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content">
+
+		<ImageButton
+			android:id="@+id/ib_play"
+			android:layout_width="@dimen/d_mini_fab"
+			android:layout_height="@dimen/d_mini_fab"
+			android:scaleType="centerInside"
+			android:src="@drawable/ic_play"
+			android:tint="?android:colorAccent"
+			android:background="?android:selectableItemBackgroundBorderless"
+			android:layout_alignParentEnd="true"
+			android:layout_centerVertical="true"
+			android:layout_marginRight="@dimen/spacing_xlarge"/>
+
+		<TextView
+			android:letterSpacing="0.05"
+			android:ellipsize="end"
+			android:id="@+id/player_artist"
+			android:layout_toLeftOf="@id/ib_play"
+			android:maxWidth="100dp"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:maxLines="2"
+			android:text="歌手"
+			android:layout_centerVertical="true"
+			android:layout_marginRight="@dimen/spacing_xlarge"/>
+
+		<TextView
+			android:layout_alignParentStart="true"
+			android:layout_toLeftOf="@id/player_artist"
+			android:layout_marginTop="@dimen/spacing_normal"
+			android:id="@+id/player_title"
+			android:text="标题"
+			android:textSize="@dimen/tsize_normal"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginRight="@dimen/spacing_normal"
+			android:layout_marginLeft="@dimen/spacing_large"
+			android:letterSpacing="@dimen/letter_spacing_normal"/>
+
+		<TextView
+			android:layout_toLeftOf="@id/player_artist"
+			android:layout_marginTop="4dp"
+			android:layout_below="@id/player_title"
+			android:id="@+id/player_info"
+			android:text="信息"
+			android:textStyle="italic"
+			android:typeface="monospace"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignLeft="@id/player_title"
+			android:layout_marginRight="@dimen/spacing_normal"
+			android:textSize="@dimen/tsize_small"
+			android:letterSpacing="@dimen/letter_spacing_small"/>
+
+	</RelativeLayout>
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_marginTop="@dimen/spacing_large"
+		android:layout_marginBottom="@dimen/spacing_xlarge"
+		android:layout_height="wrap_content">
+
+		<TextView
+			android:text="00:00"
+			android:layout_centerVertical="true"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentLeft="true"
+			android:gravity="center_vertical"
+			android:id="@+id/tv_bar_curtime"
+			android:layout_marginLeft="@dimen/spacing_large"/>
+
+		<TextView
+			android:layout_centerVertical="true"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentRight="true"
+			android:id="@+id/tv_bar_duration"
+			android:text="00:00"
+			android:layout_marginRight="@dimen/spacing_large"/>
+
+		<SeekBar
+			android:id="@+id/seekbar"
+			android:layout_centerVertical="true"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_toLeftOf="@id/tv_bar_duration"
+			android:layout_toRightOf="@id/tv_bar_curtime"
+			android:enabled="false"
+		/>
+
+
+	</RelativeLayout>
+	
+	
+</LinearLayout>
+
