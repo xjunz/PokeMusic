@@ -8,8 +8,8 @@ android {
         applicationId "com.zxj.music.fusion"
         minSdkVersion 21
         targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        versionCode 17122102
+        versionName "17.12.21.2"
     }
     buildTypes {
         release {

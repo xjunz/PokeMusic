@@ -262,6 +262,8 @@ public class ResultFragment extends Fragment
 					case R.id.btn_dload_ogg:
 						DownloadUtils.download(info.getAudioSourceUrl(SongInfo.QUALITY_SOGG), DownloadUtils.PATH_NETEASE_MUSIC + info.songname
 											   , info.songname + ".ogg", info.songname, info.songname+"-"+info.singer);
+											   break;
+											  
 					
 					case R.id.btn_dload_mv:
 						Intent it = new Intent(Intent.ACTION_VIEW);

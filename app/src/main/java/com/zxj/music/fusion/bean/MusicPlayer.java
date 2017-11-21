@@ -98,7 +98,9 @@ MediaPlayer.OnErrorListener, MediaPlayer.OnBufferingUpdateListener, MediaPlayer.
 			{
 				if (!seekbar.isPressed())
 				{
+                    if(player.isPlaying()){
 					seekbar.setProgress(player.getCurrentPosition());
+					}
 				}
 				onProgressUpdateListener.onProgress(MusicPlayer.this, player.getCurrentPosition());
 			}

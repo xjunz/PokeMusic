@@ -12,7 +12,7 @@
 	<string name="unknown">Unknown</string>
 	<string name="noti_no_internet_detected">No internet detected.Please check."</string>
 	<string name="retry">Retry</string>
-	<string name="result_for">Result For 「%s」</string>
+	<string name="result_for">Results For 「%s」</string>
 	<string name="noti_keyword_not_change">Keyword seems to be not changed.</string>
 	<string name="still_try">Still try</string>
 	<string name="noti_load_up">No more songs :(</string>
@@ -38,8 +38,10 @@
 	<string name="msg_about_os">
 		 Open source project refered to:
 		\nhttps://github.com/nickbutcher/plaid
+		\n
 		 \nView source code:
 		\nhttps://github.com/zxj1999/PokeMusic
 	</string>
 	<string name="operation_failed">Operation falied!</string>
+	<string name="start_download">Start downloading...</string>
 </resources>
