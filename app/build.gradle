@@ -8,8 +8,8 @@ android {
         applicationId "com.zxj.music.fusion"
         minSdkVersion 21
         targetSdkVersion 25
-        versionCode 17122102
-        versionName "17.12.21.2"
+        versionCode 17122103
+        versionName "17.12.21.3"
     }
     buildTypes {
         release {
@@ -21,7 +21,6 @@ android {
 
 dependencies {
 	compile 'com.android.support:support-v4:+'
-	
 	compile 'com.android.support:recyclerview-v7:+'
 	  compile fileTree(dir: 'libs', include: ['*.jar'])
 }

@@ -29,6 +29,7 @@
 	/>
 	<ImageButton
 		android:id="@+id/ib_chevron"
+		android:visibility="gone"
 		android:layout_below="@id/ll_tab_container"
 		android:layout_gravity="center_horizontal|bottom"
 		android:background="?android:selectableItemBackgroundBorderless"
@@ -146,6 +147,7 @@
 	
 	<ImageButton
 		android:onClick="scrollToTop"
+		android:visibility="gone"
 		android:id="@+id/fab_goto_top"
 		android:src="@drawable/ic_play"
 		android:background="@drawable/fab"
