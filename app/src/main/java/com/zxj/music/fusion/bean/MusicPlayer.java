@@ -9,7 +9,7 @@ import com.zxj.music.fusion.*;
 
 
 
-public class MusicPlayer implements MediaPlayer.OnCompletionListener,
+public class MusicPlayer extends MediaPlayer implements 
 MediaPlayer.OnErrorListener, MediaPlayer.OnBufferingUpdateListener, MediaPlayer.OnPreparedListener
 ,SeekBar.OnSeekBarChangeListener,AudioManager.OnAudioFocusChangeListener
 {
@@ -19,9 +19,19 @@ MediaPlayer.OnErrorListener, MediaPlayer.OnBufferingUpdateListener, MediaPlayer.
 	private int var_update_period=1000;
     private boolean var_timer_enabled=false;
 	private SeekBar seekbar;
-	private MediaPlayer player;
+	private OnAudioFocusChangeListener listener;
 	private OnProgressUpdateListener onProgressUpdateListener;
 
+	public interface OnAudioFocusChangeListener
+	{
+		void onGainFocus();
+		void onLoseFocus();
+	}
+
+	public void setOnAudioFocusChangeListener(OnAudioFocusChangeListener listenr)
+	{
+		this.listener = listenr;
+	}
 
 	public interface OnProgressUpdateListener
 	{
@@ -32,22 +42,21 @@ MediaPlayer.OnErrorListener, MediaPlayer.OnBufferingUpdateListener, MediaPlayer.
 	public MusicPlayer(SeekBar seekbar)
 	{
 		this.seekbar = seekbar;
-		player = new MediaPlayer();
-		player.setAudioStreamType(AudioManager.STREAM_MUSIC);
-		player.setOnCompletionListener(this);
-		player.setOnBufferingUpdateListener(this);
-		player.setOnPreparedListener(this);
-		audioManager = audioManager = (AudioManager) App.app_context. getSystemService(App.AUDIO_SERVICE);
 
+		this.setAudioStreamType(AudioManager.STREAM_MUSIC);
+		this.setOnBufferingUpdateListener(this);
+		this.setOnPreparedListener(this);
+		audioManager = audioManager = (AudioManager) App.app_context. getSystemService(App.AUDIO_SERVICE);
         this.seekbar.setOnSeekBarChangeListener(this);
 	}
+
 
 	@Override
 	public void onProgressChanged(SeekBar p1, int p2, boolean p3)
 	{
 		if (p1.isPressed())
 		{
-			player.seekTo(p2 - p2 % 10);
+			this.seekTo(p2 - p2 % 10);
 		}
 
 	}
@@ -66,12 +75,12 @@ MediaPlayer.OnErrorListener, MediaPlayer.OnBufferingUpdateListener, MediaPlayer.
 
 	public void play(String url)
 	{
-		player.reset();
+		reset();
 		seekbar.setSecondaryProgress(0);
 		seekbar.setProgress(0);
 		try
 		{
-			player.setDataSource(url);
+			this.setDataSource(url);
 		}
 		catch (IllegalStateException e)
 		{}
@@ -81,7 +90,7 @@ MediaPlayer.OnErrorListener, MediaPlayer.OnBufferingUpdateListener, MediaPlayer.
 		{}
 		catch (IOException e)
 		{}
-		player.prepareAsync();
+		prepareAsync();
 	}
 
 	public void setOnProgressUpdateListener(OnProgressUpdateListener listener)
@@ -98,11 +107,12 @@ MediaPlayer.OnErrorListener, MediaPlayer.OnBufferingUpdateListener, MediaPlayer.
 			{
 				if (!seekbar.isPressed())
 				{
-                    if(player.isPlaying()){
-					seekbar.setProgress(player.getCurrentPosition());
+                    if (isPlaying())
+					{
+						seekbar.setProgress(getCurrentPosition());
 					}
 				}
-				onProgressUpdateListener.onProgress(MusicPlayer.this, player.getCurrentPosition());
+				onProgressUpdateListener.onProgress(MusicPlayer.this, getCurrentPosition());
 			}
 		};
 		timer.schedule(task, 0, var_update_period);
@@ -127,11 +137,7 @@ MediaPlayer.OnErrorListener, MediaPlayer.OnBufferingUpdateListener, MediaPlayer.
 		seekbar.setSecondaryProgress(seekbar.getMax() * p2);
 	}
 
-	@Override
-	public void onCompletion(MediaPlayer p1)
-	{
 
-	}
 
 	@Override
 	public boolean onError(MediaPlayer p1, int p2, int p3)
@@ -163,18 +169,22 @@ MediaPlayer.OnErrorListener, MediaPlayer.OnBufferingUpdateListener, MediaPlayer.
 	{
 		seekbar.setMax(p1.getDuration());
 		requestAudioFocus();
-		player.start();
+		this.start();
         enableUpdateProgress();
 	}
 
-	public void auto(){
-		if(player.isPlaying()){
-			player.pause();
-		}else{
-			player.start();
+	public void auto()
+	{
+		if (isPlaying())
+		{
+			pause();
+		}
+		else
+		{
+			this.start();
 		}
 	}
-	
+
 	@Override
 	public void onAudioFocusChange(int p1)
 	{
@@ -182,33 +192,44 @@ MediaPlayer.OnErrorListener, MediaPlayer.OnBufferingUpdateListener, MediaPlayer.
 		{
 
 			enableUpdateProgress();
-			if (!player.isPlaying())
+			if (!isPlaying())
 			{
-				player.start();
-				player.setVolume(1, 1);
+
+				this.start();
+				this.setVolume(1, 1);
+				if (listener != null)
+				{
+					listener.onGainFocus();
+				}
 			}
 
 		}
 		else if (p1 == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT || p1 == AudioManager.AUDIOFOCUS_LOSS)
 		{
 			disableUpdateProgress();
-			if (player.isPlaying())
+			if (isPlaying())
 			{
-
-				player.pause();
+				pause();
 			}
-		}
+			if (!isPlaying())
+			{
+				if (listener != null)
+				{
+					listener.onLoseFocus();
+				}
+			}
 
-		else if (p1 == AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK)
-		{
-			player.setVolume(.2f, .2f);
+			else if (p1 == AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK)
+			{
+				this.setVolume(.2f, .2f);
+			}
 		}
 	}
 
 	public void release()
 	{
 		disableUpdateProgress();
-		player.release();
+		super.release();
 		audioManager.abandonAudioFocus(this);
 	}
 }

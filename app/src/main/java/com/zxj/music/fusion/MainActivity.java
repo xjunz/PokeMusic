@@ -6,6 +6,7 @@ import android.animation.*;
 import android.app.*;
 import android.content.*;
 import android.content.pm.*;
+import android.media.*;
 import android.net.*;
 import android.os.*;
 import android.support.v4.app.*;
@@ -22,16 +23,17 @@ import com.zxj.music.fusion.task.*;
 import com.zxj.music.fusion.util.*;
 import com.zxj.music.fusion.widget.*;
 import java.util.*;
+
 import com.zxj.music.fusion.R;
-import android.system.*;
 
 public class MainActivity extends FragmentActivity implements SearchTask.SearchListener,LoadMoreTask.LoadMoreListener,
-SnackBar.Callback,Panel.OnPanelSlideListener,MusicPlayer.OnProgressUpdateListener
+SnackBar.Callback,Panel.OnPanelSlideListener,MusicPlayer.OnProgressUpdateListener,MediaPlayer.OnCompletionListener,MusicPlayer.OnAudioFocusChangeListener
+
 {
 
+	
 
-
-
+	
 
 	private Toolbar toolbar;
 	private ViewPager pager;
@@ -52,6 +54,8 @@ SnackBar.Callback,Panel.OnPanelSlideListener,MusicPlayer.OnProgressUpdateListene
 		initViews();
 		player = new MusicPlayer(sbPlayProgress);
 		player.setOnProgressUpdateListener(this);
+		player.setOnCompletionListener(this);
+		player.setOnAudioFocusChangeListener(this);
 		//判断应用是否拥有读取内置储存的权限
 		if (ContextCompat.checkSelfPermission(App.app_context, Manifest.permission.READ_EXTERNAL_STORAGE)
 			== PackageManager.PERMISSION_DENIED)
@@ -292,7 +296,11 @@ SnackBar.Callback,Panel.OnPanelSlideListener,MusicPlayer.OnProgressUpdateListene
 		Bundle options = ActivityOptions.makeSceneTransitionAnimation(this, searchMenuView, "transition_search_back").toBundle();
 		startActivityForResult(new Intent(this, SearchActivity.class), 0, options);
 	}
-
+	@Override
+	public void onCompletion(MediaPlayer p1)
+	{
+		UiUtils.windmillTrick(ibBarPlay,R.drawable.ic_play,0);
+	}
 
 	public void onClick(View view)
 	{
@@ -302,9 +310,9 @@ SnackBar.Callback,Panel.OnPanelSlideListener,MusicPlayer.OnProgressUpdateListene
 				
 				if(player!=null){
 			if(view.getRotation()==0){
-				UiUtils.windmillTrick((ImageView)view,R.drawable.ic_pause,360);
+				UiUtils.windmillTrick(ibBarPlay,R.drawable.ic_pause,360);
 				}else{
-				UiUtils.windmillTrick((ImageView)view,R.drawable.ic_play,0);
+				UiUtils.windmillTrick(ibBarPlay,R.drawable.ic_play,0);
 				}
 				player.auto();
 			}
@@ -327,7 +335,8 @@ SnackBar.Callback,Panel.OnPanelSlideListener,MusicPlayer.OnProgressUpdateListene
 		}
 	}
 
-
+	
+	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data)
 	{
@@ -421,7 +430,7 @@ SnackBar.Callback,Panel.OnPanelSlideListener,MusicPlayer.OnProgressUpdateListene
 			}
 			pager.setAdapter(new ResultFragmentAdapter(getSupportFragmentManager(), fragmentList));
 			UiUtils.enable(tabs);
-			UiUtils.visible(indicator, pager);
+			UiUtils.visible(indicator, pager,fabGotoTop,ibChevron);
 		}
 		else
 		{
@@ -584,6 +593,19 @@ SnackBar.Callback,Panel.OnPanelSlideListener,MusicPlayer.OnProgressUpdateListene
 
 			});
 	}
+	
+	@Override
+	public void onGainFocus()
+	{
+		UiUtils.windmillTrick(ibBarPlay,R.drawable.ic_pause,360);
+	}
+
+	@Override
+	public void onLoseFocus()
+	{
+		UiUtils.windmillTrick(ibBarPlay,R.drawable.ic_play,0);
+	}
+	
 }
 	
 
