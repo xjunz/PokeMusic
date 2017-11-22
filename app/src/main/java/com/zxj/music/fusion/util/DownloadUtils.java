@@ -3,12 +3,11 @@ package com.zxj.music.fusion.util;
 
 import android.app.*;
 import android.content.*;
-import android.content.pm.*;
 import android.net.*;
 import android.os.*;
-import android.support.v4.app.*;
-import android.support.v4.content.*;
 import com.zxj.music.fusion.*;
+import java.net.*;
+import java.io.*;
 
 public class DownloadUtils
 {
@@ -19,15 +18,17 @@ public class DownloadUtils
 	public static final String PATH_KUGOU_MUSIC=PATH_SDCARD+"/kgmusic/download/";
 	public static final String PATH_DOWNLOAD="/Download/";
 	
-	public static void download(String downloadUrl,String dir,String name,String title,String des){
+	public static void download(String downloadUrl,String name){
 // 创建下载请求
 	DownloadManager.Request request = new DownloadManager.Request(Uri.parse(downloadUrl));
 
-	request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE);
-	request.setTitle(title);
-	request.setDescription(des);
+	//request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE);
+	//request.setTitle(title);
+	//request.setDescription(des);
+		
+		//}
 	request.setDestinationInExternalPublicDir(PATH_DOWNLOAD,name);
 	UiUtils.toast(App.app_context.getString(R.string.start_download));
-    long downloadId = manager.enqueue(request);
+    manager.enqueue(request);
 	}
 }

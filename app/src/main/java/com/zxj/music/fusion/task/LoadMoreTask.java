@@ -4,8 +4,10 @@ import com.zxj.music.fusion.bean.*;
 import java.util.*;
 import com.zxj.music.fusion.util.*;
 
-public class LoadMoreTask extends AsyncTask<Object,Void,ArrayList<SongInfo>>
+public class LoadMoreTask extends AsyncTask<Object,Void,ArrayList<SongInfo>> 
 {
+
+	
 
 	private LoadMoreListener listener;
 

@@ -25,7 +25,7 @@ public class ResultFragment extends Fragment
     public ArrayList<SongInfo> songInfoList;
 	private static Transition transition=new ChangeBounds();
 	private SparseIntArray expandItemArray=new SparseIntArray();
-	
+
 	private  SimultaneousAnimator animator=new SimultaneousAnimator();
 	private static OnTouchListener touchEater=new OnTouchListener(){
 
@@ -39,6 +39,7 @@ public class ResultFragment extends Fragment
 	public ResultFragment(ArrayList<SongInfo> songInfoList)
 	{
 		this.songInfoList = songInfoList;
+		
 	}
 
 	public ResultFragment()
@@ -177,6 +178,8 @@ public class ResultFragment extends Fragment
 			viewHolder.btnS320.setVisibility(info.id_s320.equals("0") ?8: 0);
 			viewHolder.btnOgg.setVisibility(info.id_sogg.equals("0") ?8: 0);
 			viewHolder.btnMV.setVisibility(info.id_mv.equals("0") ?8: 0);
+			viewHolder.btnSQ.setVisibility(info.id_SQ.equals("0") ?8: 0);
+			
 		}
 
 		@Override
@@ -186,12 +189,12 @@ public class ResultFragment extends Fragment
 		}
 
 
-		
+
 		class SongViewHolder extends RecyclerView.ViewHolder implements OnClickListener
 		{
 
 		    TextView tvTitle,tvInfo,tvSinger;
-			View dloadContainer, ibPlay,btnS128,btnS320,btnOgg,btnMV;
+			View dloadContainer, ibPlay,btnS128,btnS320,btnOgg,btnMV,btnSQ;
 			public SongViewHolder(final View item)
 			{
 				super(item);
@@ -207,6 +210,8 @@ public class ResultFragment extends Fragment
 				btnOgg.setOnClickListener(this);
 				btnMV = item.findViewById(R.id.btn_dload_mv);
 				btnMV.setOnClickListener(this);
+				btnSQ=item.findViewById(R.id.btn_dload_sq);
+				btnSQ.setOnClickListener(this);
 				dloadContainer = item.findViewById(R.id.rl_dload_container);
 				ibPlay.setOnClickListener(this);
 				item.setOnClickListener(this);
@@ -214,7 +219,7 @@ public class ResultFragment extends Fragment
 			}
 
 			@Override
-			public void onClick(View p1)
+			public void onClick(final View p1)
 			{
 				final int pos=getAdapterPosition();
 				final SongInfo info=songInfoList.get(pos);
@@ -251,28 +256,46 @@ public class ResultFragment extends Fragment
 						animator.setAnimateMoves(false);
 						notifyItemChanged(pos, 0);
 						break;
-					case R.id.btn_dload_s320:
-						DownloadUtils.download(info.getAudioSourceUrl(SongInfo.QUALITY_S320), DownloadUtils.PATH_NETEASE_MUSIC + info.songname
-											   , info.songname + ".mp3", info.songname, info.songname+"-"+info.singer);
-						break;
-					case R.id.btn_dload_s128:
-						DownloadUtils.download(info.getAudioSourceUrl(SongInfo.QUALITY_S128), DownloadUtils.PATH_NETEASE_MUSIC + info.songname
-											   , info.songname + ".mp3", info.songname, info.songname+"-"+info.singer);
-						break;
-					case R.id.btn_dload_ogg:
-						DownloadUtils.download(info.getAudioSourceUrl(SongInfo.QUALITY_SOGG), DownloadUtils.PATH_NETEASE_MUSIC + info.songname
-											   , info.songname + ".ogg", info.songname, info.songname+"-"+info.singer);
-											   break;
-											  
-					
 					case R.id.btn_dload_mv:
 						Intent it = new Intent(Intent.ACTION_VIEW);
 						Uri uri = Uri.parse(info.getMVUrl());
 						it.setDataAndType(uri, "video/mp4");
 						main.startActivity(it);
-					
+						break;
+					default:
+
+						if (!App.app_pref.getBoolean(App.var_not_show_download_confirmation_dialog, false))
+						{
+							UiUtils.checkableDialog(main, main.getString(R.string.download), String.format(main.getString(R.string.conf_download), info.songname), App.var_not_show_download_confirmation_dialog)
+								.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener(){
+
+									@Override
+									public void onClick(DialogInterface i, int p2)
+									{
+										download((String)p1.getContentDescription(), info);
+
+									}
+
+								}).setNegativeButton(android.R.string.cancel, null).show();
+						}
+						else
+						{
+							download((String)p1.getContentDescription(), info);
+						}
 				}
 			}
+		}
+
+	}
+	private void download(String quality , SongInfo info)
+	{
+		switch (quality)
+		{
+			case SongInfo.QUALITY_SOGG:
+				DownloadUtils.download(info.getAudioSourceUrl(SongInfo.QUALITY_SOGG),info.songname+"-"+info.singer+".ogg");
+				break;
+            default:
+				DownloadUtils.download(info.getAudioSourceUrl(quality), info.songname+".mp3");
 		}
 
 	}

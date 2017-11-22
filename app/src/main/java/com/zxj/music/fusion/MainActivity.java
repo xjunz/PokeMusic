@@ -27,13 +27,11 @@ import java.util.*;
 import com.zxj.music.fusion.R;
 
 public class MainActivity extends FragmentActivity implements SearchTask.SearchListener,LoadMoreTask.LoadMoreListener,
-SnackBar.Callback,Panel.OnPanelSlideListener,MusicPlayer.OnProgressUpdateListener,MediaPlayer.OnCompletionListener,MusicPlayer.OnAudioFocusChangeListener
+SnackBar.Callback,Panel.OnPanelSlideListener,MusicPlayer.OnProgressUpdateListener
+,MediaPlayer.OnCompletionListener,MusicPlayer.OnAudioFocusChangeListener
+
 
 {
-
-	
-
-	
 
 	private Toolbar toolbar;
 	private ViewPager pager;
@@ -78,9 +76,8 @@ SnackBar.Callback,Panel.OnPanelSlideListener,MusicPlayer.OnProgressUpdateListene
 			else
             {
                 //用户拒绝授权，弹窗提示
-				AlertDialog.Builder builder=new AlertDialog.Builder(this);
-				builder.setTitle(R.string.noti_permission_not_granted)
-					.setMessage(R.string.msg_permission_not_granted)
+				UiUtils.dialog(this,R.string.noti_permission_not_granted,
+					R.string.msg_permission_not_granted)
 					.setPositiveButton(R.string.settings, new DialogInterface.OnClickListener(){
 
 						@Override
@@ -605,6 +602,7 @@ SnackBar.Callback,Panel.OnPanelSlideListener,MusicPlayer.OnProgressUpdateListene
 	{
 		UiUtils.windmillTrick(ibBarPlay,R.drawable.ic_play,0);
 	}
+	
 	
 }
 	

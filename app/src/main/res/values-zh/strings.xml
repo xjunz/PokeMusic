@@ -20,7 +20,6 @@
 	<string name="err_play">播放出错 :(</string>
 	<string name="noti_use_mobile_data">当前处于移动网络下，确定继续播放？</string>
 	<string name="s128">标准</string>
-	<string name="s320">高品质（HQ）</string>
 	<string name="noti_permission_granted">授权成功</string>
 	<string name="noti_permission_not_granted">授权失败</string>
 	<string name="msg_permission_not_granted">请授予本应用写入储存空间权限，否则应用无法正常工作。请放心，我们不会滥用权限。</string>
@@ -28,9 +27,10 @@
 	<string name="err_permission">错误！授权失败。</string>
 	<string name="about_os">开源相关</string>
 	<string name="feedback">反馈</string>
-	<string name="donate">捐赠</string>
+	<string name="donate">打赏</string>
 	<string name="msg_about">
-		本应用允许你在不下载客户端的的情况下下载对应平台的音乐和音乐视频。
+		本应用允许您在不下载客户端的的情况下下载对应平台的音乐和音乐视频。
+	    \n注意：本音乐并不是破解付费，只是聚合了各大平台的音乐。
 	    \n搜索内容来自 
 		\nhttps://tikitiki.cn
 		</string>
@@ -43,4 +43,8 @@
 	</string>
 	<string name="operation_failed">操作失败！</string>
 	<string name="start_download">开始下载...</string>
+	<string name="no_more_showing">不再显示</string>
+	<string name="conf_download">您确定要下载「%s」吗？\n\n请注意，由于版权问题，您可能无法免费下载此音乐。</string>
+	<string name="download">下载歌曲</string>
+	<string name="retry">重试</string>
 </resources>

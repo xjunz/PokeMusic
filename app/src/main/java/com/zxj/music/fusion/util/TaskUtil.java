@@ -15,8 +15,9 @@ public class TaskUtil
 	public  static  int vendor=1;
 	
 	public  static String keyword="";
-
-
+	
+	
+	
 	public static String  makeUrl(int page,int vendor)
 	{
 		String url="";
@@ -46,6 +47,7 @@ public class TaskUtil
 			int len = 0; 
 			URL url = new URL(strUrl);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();  
+			
 			InputStream inStream = conn.getInputStream();  
 			ByteArrayOutputStream outStream = new ByteArrayOutputStream();  
 

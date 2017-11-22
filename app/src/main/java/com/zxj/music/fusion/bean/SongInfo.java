@@ -11,15 +11,16 @@ public class SongInfo
 	public String vendor_type;
 	public String id_s128;
 	public String id_s320;
+	public String id_SQ;
 	public String id_mv;
 	public String id_sogg;
 	public String formated_duration;
 
-	
-
 	public static final String QUALITY_S128="s128";
 	public static final String QUALITY_S320="s320";
 	public static final String QUALITY_SOGG="sogg";
+	public static final String QUALITY_SQ="SQ";
+	
 
 	public static final int VENDOR_TENCENT=1;
 	public static final int VENDOR_NETEASE=2;
@@ -40,6 +41,7 @@ public class SongInfo
 			info.id_s128 = jobj.getString("s128");
 			info.id_s320 = jobj.getString("s320");
 			info.id_sogg = jobj.getString("sogg");
+			info.id_SQ=jobj.getString("SQ");
 			info.singer = jobj.getString("singer");
 			info.songname = jobj.getString("name");
 		}
@@ -57,6 +59,7 @@ public class SongInfo
 			case QUALITY_S128:return id_s128;
 			case QUALITY_S320:return id_s320;
 			case QUALITY_SOGG:return id_sogg;
+			case QUALITY_SQ:return id_SQ;
 		}
 		return null;
 	}

@@ -19,7 +19,7 @@
 	<string name="err_play">An Error occured when playing :(</string>
 	<string name="noti_use_mobile_data">Are you sure to play this song using MOBILE DATA ?</string>
 	<string name="s128">Standard</string>
-	<string name="s320">High Quality</string>
+	<string name="s320">HQ</string>
 	<string name="ogg">ogg</string>
 	<string name="mv">MV</string>
 	<string name="noti_permission_granted">Permission granted.</string>
@@ -31,7 +31,8 @@
 	<string name="donate">Donate</string>
 	<string name="feedback">Feedback</string>
 	<string name="msg_about">
-		This app enables you to download a certain platform\'s music without downloading its client terminal."
+		This app enables you to download a certain platform\'s music without downloading its client terminal.
+		\nNotice:This app does\'nt crack downloading paid music,but is a fusion of some platform\'s music."
 		\nAll contents are from
 		\nhttps://tikitiki.cn
 	</string>
@@ -44,4 +45,11 @@
 	</string>
 	<string name="operation_failed">Operation falied!</string>
 	<string name="start_download">Start downloading...</string>
+	<string name="SQ">SQ</string>
+	<string name="no_more_showing">No more showing this</string>
+	<string name="download">Download</string>
+	<string name="conf_download">Are you sure to download this song?\n\nNotice that because of copyright issues,you maybe fail to download it uncharging.</string>
+	<string name="unable_to_download">Unable to download</string>
+	<string name="msg_unable_to_download">Unable to download this song maybe because of copyright issues.You can try again.</string>
+	<string name="retry">Retry</string>
 </resources>

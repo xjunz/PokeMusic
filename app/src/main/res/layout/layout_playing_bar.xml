@@ -84,7 +84,7 @@
 		android:layout_height="wrap_content">
 
 		<TextView
-			android:text="00:00"
+			android:text="0:00"
 			android:layout_centerVertical="true"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
@@ -99,7 +99,7 @@
 			android:layout_height="wrap_content"
 			android:layout_alignParentRight="true"
 			android:id="@+id/tv_bar_duration"
-			android:text="00:00"
+			android:text="0:00"
 			android:layout_marginRight="@dimen/spacing_large"/>
 
 		<SeekBar

@@ -5,6 +5,7 @@ import android.widget.*;
 import android.content.Context;
 import com.zxj.music.fusion.*;
 import android.app.*;
+import android.view.View.*;
 
 public class UiUtils
 {
@@ -79,6 +80,28 @@ public class UiUtils
 		.setView(tv);
 	}
 	
+	
+	public static AlertDialog.Builder dialog(Context context,int resTitle,int resMsg){
+		return new AlertDialog.Builder(context,R.style.StyleDialog).setTitle(resTitle).setMessage(resMsg);
+	}
+	
+	public static AlertDialog.Builder checkableDialog(Context context,String resTitle,String resMsg,final String key){
+		ViewGroup vg=(ViewGroup) LayoutInflater.from(context).inflate(R.layout.layout_dialog_checkable,null,false);
+		TextView tvMsg=(TextView) vg.getChildAt(0);
+		final CheckedTextView checkBox=(CheckedTextView) vg.getChildAt(1);
+		tvMsg.setText(resMsg);
+		checkBox.setOnClickListener(new OnClickListener(){
+
+				@Override
+				public void onClick(View p1)
+				{
+				   checkBox.setChecked(!checkBox.isChecked());
+				   App.app_pref_editor.putBoolean(key,checkBox.isChecked()).commit();
+				}
+			});
+			
+	   return new AlertDialog.Builder(context,R.style.StyleDialog).setTitle(resTitle).setView(vg);
+	}
 
 	public static void toast(String str)
 	{

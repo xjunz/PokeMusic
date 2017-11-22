@@ -12,6 +12,10 @@ public class App extends Application
    public static int app_width,app_height;
    public static Interpolator fast_out_slow_in,linear_out_slow_in;
    public static int navigation_bar_height;
+   public static SharedPreferences app_pref;
+   public static SharedPreferences.Editor app_pref_editor;
+	public static String var_not_show_download_confirmation_dialog="var_show_download_confirmation_dialog";
+  
 	@Override
 	public void onCreate()
 	{
@@ -19,7 +23,9 @@ public class App extends Application
 		app_context=getApplicationContext();
 		app_width=getResources().getDisplayMetrics().widthPixels;
 		app_height=getResources().getDisplayMetrics().heightPixels;
-        fast_out_slow_in=AnimationUtils.loadInterpolator(app_context,android.R.interpolator.fast_out_slow_in);
+		app_pref=getSharedPreferences("data",MODE_PRIVATE);
+		app_pref_editor=app_pref.edit();
+		 fast_out_slow_in=AnimationUtils.loadInterpolator(app_context,android.R.interpolator.fast_out_slow_in);
 		linear_out_slow_in=AnimationUtils.loadInterpolator(app_context,android.R.interpolator.linear_out_slow_in);
 		cm=(ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
 	}

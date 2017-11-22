@@ -4,7 +4,10 @@
 	android:autoLink="web"
 	android:textStyle="italic"
 	android:typeface="monospace"
-	android:padding="@dimen/spacing_xlarge"
+	android:paddingRight="@dimen/spacing_xlarge"
+	android:paddingLeft="@dimen/spacing_xlarge"
+	android:paddingTop="@dimen/spacing_large"
+	android:paddingBottom="@dimen/spacing_xlarge"
 	android:textSize="@dimen/tsize_normal"
 	android:letterSpacing="@dimen/letter_spacing_small"
     >

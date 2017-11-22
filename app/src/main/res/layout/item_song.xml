@@ -99,6 +99,8 @@
 			android:layout_width="match_parent"/>
 
 		<Button
+			android:contentDescription="sogg"
+			android:letterSpacing="@dimen/letter_spacing_normal"
 			android:layout_below="@id/divider_2"
 			style="?android:attr/buttonBarButtonStyle"
 			android:layout_height="wrap_content"
@@ -110,6 +112,8 @@
 		/>
 
 		<Button
+			android:contentDescription="s128"
+			android:letterSpacing="@dimen/letter_spacing_normal"
 			android:layout_below="@id/divider_2"
 			style="?android:attr/buttonBarButtonStyle"
 			android:layout_height="wrap_content"
@@ -121,6 +125,8 @@
 		/>
 
 		<Button
+			android:contentDescription="s320"
+			android:letterSpacing="@dimen/letter_spacing_normal"
 			android:layout_below="@id/divider_2"
 			style="?android:attr/buttonBarButtonStyle"
 			android:layout_height="wrap_content"
@@ -130,8 +136,22 @@
 			android:layout_toRightOf="@id/btn_dload_s128"
 			android:id="@+id/btn_dload_s320"
 		/>
-
 		<Button
+			android:contentDescription="SQ"
+			android:letterSpacing="@dimen/letter_spacing_normal"
+			android:layout_below="@id/divider_2"
+			style="?android:attr/buttonBarButtonStyle"
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:text="@string/SQ"
+			android:visibility="gone"
+			android:layout_toRightOf="@id/btn_dload_s320"
+			android:id="@+id/btn_dload_sq"
+		/>
+		
+		<Button
+			
+			android:letterSpacing="@dimen/letter_spacing_normal"
 			android:layout_below="@id/divider_2"
 			style="?android:attr/buttonBarButtonStyle"
 			android:layout_height="wrap_content"
